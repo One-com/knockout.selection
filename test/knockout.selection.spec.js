@@ -1,5 +1,5 @@
 /*global describe, it, expect, beforeEach, afterEach, ko, $, toArray,
-         createTestElement, click, space, arrowDown, arrowUp, arrowRight, arrowLeft,
+         createTestElement, click, mousedown, mouseup, space, arrowDown, arrowUp, arrowRight, arrowLeft,
          keyDown, keyUp, home, end*/
 function createItems(size) {
     var result = [];
@@ -1581,6 +1581,39 @@ describe('Selection', function () {
             expect(function () {
                 model.mode('nonExistingModeName');
             }).to.throwException(/Unknown mode: "nonExistingModeName"/);
+        });
+    });
+
+    describe('in late selection mode', function () {
+        var items;
+
+        beforeEach(function () {
+            element = createTestElement(
+                'foreach: items, selection: { selection: selection, focused: focused, anchor: anchor, mode: mode, lateSelect: true }',
+                'attr: { id: id }, css: { selected: selected, focused: focused }'
+            );
+            items = createItems(2);
+            model.items = ko.observableArray(items);
+            model.mode = ko.observable('single');
+            ko.applyBindings(model, element);
+        });
+
+        it('delays selection until mouseup in single mode', function () {
+            model.mode('single');
+
+            mousedown($('#item1'));
+            expect(model.selection().length).to.be(0);
+            mouseup($('#item1'));
+            expect(model.selection().length).to.be(1);
+        });
+
+        it('delays selection until mouseup in multi mode', function () {
+            model.mode('multi');
+
+            mousedown($('#item1'));
+            expect(model.selection().length).to.be(0);
+            mouseup($('#item1'));
+            expect(model.selection().length).to.be(1);
         });
     });
 });
