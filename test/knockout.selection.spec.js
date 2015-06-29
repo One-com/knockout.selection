@@ -1584,7 +1584,7 @@ describe('Selection', function () {
         });
     });
 
-    describe('in late selection mode', function () {
+    describe('with late selection', function () {
         var items;
 
         beforeEach(function () {
@@ -1598,22 +1598,42 @@ describe('Selection', function () {
             ko.applyBindings(model, element);
         });
 
-        it('delays selection until mouseup in single mode', function () {
-            model.mode('single');
+        describe('in single mode', function () {
+            beforeEach(function () {
+                model.mode('single');
+            });
 
-            mousedown($('#item1'));
-            expect(model.selection().length).to.be(0);
-            mouseup($('#item1'));
-            expect(model.selection().length).to.be(1);
+            it('delays selection until mouseup on same element', function () {
+                mousedown($('#item1'));
+                expect(model.selection().length).to.be(0);
+                mouseup($('#item1'));
+                expect(model.selection().length).to.be(1);
+            });
+            it('does not select if mousedown and mouseup on different elements', function () {
+                mousedown($('#item1'));
+                expect(model.selection().length).to.be(0);
+                mouseup($('#item2'));
+                expect(model.selection().length).to.be(0);
+            });
         });
 
-        it('delays selection until mouseup in multi mode', function () {
-            model.mode('multi');
+        describe('in multi mode', function () {
+            beforeEach(function () {
+                model.mode('multi');
+            });
 
-            mousedown($('#item1'));
-            expect(model.selection().length).to.be(0);
-            mouseup($('#item1'));
-            expect(model.selection().length).to.be(1);
+            it('delays selection until mouseup on same element', function () {
+                mousedown($('#item1'));
+                expect(model.selection().length).to.be(0);
+                mouseup($('#item1'));
+                expect(model.selection().length).to.be(1);
+            });
+            it('does not select if mousedown and mouseup on different elements', function () {
+                mousedown($('#item1'));
+                expect(model.selection().length).to.be(0);
+                mouseup($('#item2'));
+                expect(model.selection().length).to.be(0);
+            });
         });
     });
 });
