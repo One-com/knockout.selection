@@ -35,6 +35,24 @@ function click(element, options) {
     element.trigger($.Event("mouseup", options));
     element.trigger($.Event("click", options));
 }
+function mousedown(element, options) {
+    var defaultOptions = {
+        which: 1,
+        shiftKey: false,
+        ctrlKey: false
+    };
+    options = $.extend(defaultOptions, options);
+    element.trigger($.Event("mousedown", options));
+}
+function mouseup(element, options) {
+    var defaultOptions = {
+        which: 1,
+        shiftKey: false,
+        ctrlKey: false
+    };
+    options = $.extend(defaultOptions, options);
+    element.trigger($.Event("mouseup", options));
+}
 
 function keyDown(element, options) {
     var defaultOptions = {
