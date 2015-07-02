@@ -3,7 +3,7 @@
   "publishConfig": {
     "registry": "http://npm.one.com/"
   },
-  "version": "0.9.3",
+  "version": "0.9.4",
   "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
   "contributors": [
     "Sune Sloth Simonsen <sune@we-knowhow.dk>",
