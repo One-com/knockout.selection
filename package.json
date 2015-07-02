@@ -1,5 +1,8 @@
 {
-  "name": "knockout.selection",
+  "name": "one.com-knockout.selection",
+  "publishConfig": {
+    "registry": "http://npm.one.com/"
+  },
   "version": "0.9.3",
   "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
   "contributors": [
@@ -23,5 +26,5 @@
     "grunt-contrib-watch": "=0.5.3",
     "grunt": "=0.4.1"
   },
-  "license": "BSD-3-Clause" 
+  "license": "BSD-3-Clause"
 }
