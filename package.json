@@ -1,8 +1,5 @@
 {
   "name": "one.com-knockout.selection",
-  "publishConfig": {
-    "registry": "http://npm.one.com/"
-  },
   "version": "0.9.4",
   "author": "Bram Stein <b.l.stein@gmail.com> (http://www.bramstein.com)",
   "contributors": [
