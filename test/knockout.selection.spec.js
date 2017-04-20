@@ -724,6 +724,20 @@ describe('Selection', function () {
                 expect(element).to.have.selectionCount(2);
             });
 
+            it('should not add duplicates when ctrl-shift-clicking with a range that overlaps the selection', function () {
+                expect(model.selection(), 'to have length', 3);
+                specHelper.click($('#item1'), { ctrlKey: true, shiftKey: true });
+                expect(model.selection(), 'to have length', 4);
+            });
+
+            it('expands the selection with ctrl-click', function () {
+                specHelper.click($('#item3'), { ctrlKey: true });
+                expect(element).to.have.selectionCount(4);
+                [2, 3, 4, 7].forEach(function (index) {
+                    expect($('#item' + index)).to.have.cssClass('selected');
+                });
+            });
+
             it('expands the selection with shift-click', function () {
                 click($('#item5'), { shiftKey: true });
                 expect(element).to.have.selectionCount(4);
